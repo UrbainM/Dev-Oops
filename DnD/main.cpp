@@ -137,7 +137,7 @@ public:
 
 int main(){
     Character character;
-    string name, race, characterClass;
+    string name, race, characterClass, background;
     int strength, constitution, intelligence, wisdom, charisma;
     cout << "Welcome to the Dungeons and Dragons Character Sheet"    << endl;
     cout << "Please enter your character's name: ";
@@ -150,9 +150,16 @@ int main(){
     }
     cout << "Enter character race: ";
     getline(cin, race);
+    character.setRace(race);
 
     cout << "Enter character class: ";
     getline(cin, characterClass);
+    character.setClass(characterClass);
+
+    cout << "Enter a character background: ";
+    getline(cin, background);
+    character.setBackground(background);
+
 
     return 0;
 }
