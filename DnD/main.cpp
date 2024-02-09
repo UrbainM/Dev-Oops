@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
-
 
 class Character {
 private:
@@ -21,19 +21,29 @@ private:
     int hitPoints;
     int speed;
     int initiative;
+    int armorClass;
+    vector<string> validRaces = {"Human", "Elf", "Dwarf", "Tiefling", "Gnome", "Dragonborn", "Half-Elf", "Half-Orc"};
+    vector<string> validClasses = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard", "Artificer","Blood Hunter"};
+    vector<string> knownSkills;
 
 public:
     Character() {
         name = "";
         race = "";
         characterClass = "";
+        background = "";
+        alignment = "";
         strength = 0;
         dexterity = 0;
         constitution = 0;
         intelligence = 0;
         wisdom = 0;
         charisma = 0;
+        speed = 0;
+        initiative = 0;
+        armorClass = 0;
     }
+    //mutators
     void setName(string n){
         name = n;
     }
@@ -42,6 +52,12 @@ public:
     }
     void setClass(string c){
         characterClass = c;
+    }
+    void setBackground( string b){
+        background = b;
+    }
+    void setAlignment(string a){
+        alignment = a;
     }
     void setStrength(int s){
         strength = s;
@@ -67,8 +83,76 @@ public:
     void setInitiative(int i){
         initiative = i;
     }
+    void setArmorClass(int ac){
+        armorClass = ac;
+    }
+    void addSkill(string s){
+        knownSkills.push_back(s);
+    }
+    //accessors
+    string getName() const {
+        return name;
+    }
+    string getRace() const {
+        return race;
+    }
+    string getClass() const {
+        return characterClass;
+    }
+    string getBackground() const {
+        return background;
+    }
+    string getAlignment() const {
+        return alignment;
+    }
+    int getStrength() const {
+        return strength;
+    }
+    int getDexterity() const {
+        return dexterity;
+    }
+    int getConstitution() const {
+        return constitution;
+    }
+    int getWisdom() const {
+        return wisdom;
+    }
+    int getCharisma() const {
+        return charisma;
+    }
+    bool isValidRace(string r) const {
+        return find(validRaces.begin(), validRaces.end(), r) != validRaces.end();
+    }
+    int getHitPoints() const {
+        return hitPoints;
+    }
+    int getArmorClass() const {
+        return armorClass;
+    }
+    vector<string> getknownSkills() const {
+        return knownSkills;
+    }
 };
 
+
 int main(){
-    cout << "Welcome to the Dungeons and Dragons Character Sheet" << endl;
+    Character character;
+    string name, race, characterClass;
+    int strength, constitution, intelligence, wisdom, charisma;
+    cout << "Welcome to the Dungeons and Dragons Character Sheet"    << endl;
+    cout << "Please enter your character's name: ";
+    getline(cin, name);
+    character.setName(name);
+
+    bool isValidRace = false;
+    if (!isValidRace) {
+        cout << "Invalid race. Please enter a valid race." << endl;
+    }
+    cout << "Enter character race: ";
+    getline(cin, race);
+
+    cout << "Enter character class: ";
+    getline(cin, characterClass);
+
+    return 0;
 }
