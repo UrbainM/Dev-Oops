@@ -144,14 +144,17 @@ int main(){
     getline(cin, name);
     character.setName(name);
 
-    bool isValidRace = false;
-    if (!isValidRace) {
-        cout << "Invalid race. Please enter a valid race." << endl;
+    bool ValidRace = false;
+    while (!ValidRace) {
+        cout << "Please enter character race: ";
+        getline(cin, race);
+        if (character.isValidRace(race)) {
+            ValidRace = true;
+            character.setRace(race);
+        } else {
+            cout << "Invalid race. ";
+        }
     }
-    cout << "Enter character race: ";
-    getline(cin, race);
-    character.setRace(race);
-
     cout << "Enter character class: ";
     getline(cin, characterClass);
     character.setClass(characterClass);
